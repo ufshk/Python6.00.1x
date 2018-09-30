@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Aug 29 21:18:11 2018
+
+@author: Journey
+"""
+
+class coordinate(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def __str__(self):
+        return "(" + str(self.x) + ", " + str(self.y) + ")"
+    def __add__(self):
+        return 0
+    def __sub__(self):
+        return 0
+    def dist(self, other):
+        x_diff_sq = (self.x - other.x)**2
+        y_diff_sq = (self.y - other.y)**2
+        return (x_diff_sq + y_diff_sq)**0.5
+
+class fraction(object):
+    def __init__(self, numer, denom):
+        self.numer = numer
+        self.denom = denom
+    def __str__(self):
+        return str(self.numer) + "/" + str(self.denom)
+    def getNumer(self):
+        return self.numer
+    def getDenom(self):
+        return self.denom
+    def __add__(self, other):
+        numerNew = other.getDenom() * self.getNumer() + self.getDenom() * other.getNumer()
+        denomNew = other.getDenom() * self.getDenom()
+        return fraction(numerNew, denomNew)
+    def __sub__(self, other):
+        numerNew = other.getDenom() * self.getNumer() - self.getDenom() * other.getNumer()
+        denomNew = other.getDenom() * self.getDenom()
+        return fraction(numerNew, denomNew)
+    def convert(self):
+        return self.getNumer() / self.getDenom()
